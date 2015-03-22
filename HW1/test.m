@@ -1,14 +1,27 @@
-
-img = imread('data/BFCatvengers.png');
-img_double = im2double( img );
-subplot( 1, 2, 1);
-img_gray = rgb2gray( img_double );
-imshow( img );
-
-[h,w,~] = size( img );
-gMask = fspecial('gaussian', [h,w], 0.5*min(h,w) );
-gMask = gMask / max( max(gMask) ) ;
-subplot(1,2,2);
-img_mask = img_double .* repmat( gMask, [1 1 3] );
-imshow(img_mask);
-imwrite(img_mask,  'yotachi.jpg', 'jpg' );
+clear all;
+oriImg = imread('data/BFCatvengers.png');
+oriImg2 = imread('data/Catvengers.png');
+temp = zeros(size(oriImg,1),size(oriImg,2),3); %會不會是邊界存取問題??
+temp = im2uint8(temp);
+ 
+for i=1:size(oriImg,1),
+    for j=1:size(oriImg,2),
+        for k=1:3,
+            
+            if oriImg(i,j,k)==0 ,
+                
+               temp(i,j,k)= NNA(i,j,k,oriImg);
+               temp(i,j,k);
+            end
+               
+        end
+        
+    end
+end
+   
+temp2 = temp + oriImg;
+temp = abs(oriImg2 -temp2);
+ 
+MSE = sum(sum(abs(temp2-oriImg2))) / (size(oriImg,1)*size(oriImg,2));
+PSNR = 10 * log10((255*255)/MSE);
+imwrite(temp2,'temp2.jpg');

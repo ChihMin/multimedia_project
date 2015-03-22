@@ -1,7 +1,7 @@
 function [ result ] = Demosaicing( img )
 %UNTITLED4 Summary of this function goes here
 %   Detailed explanation goes here
-    [h, w, ~] = size(img)
+    [h, w, ~] = size(img);
 
     drb = [1 1; -1 1; 1 -1; -1 -1];
     dg = [1 0; 0 1; -1 0; 0 -1];
