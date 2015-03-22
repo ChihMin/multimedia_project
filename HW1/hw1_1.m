@@ -12,5 +12,6 @@ imwrite(img, 'demosaicing_output.png', 'png');
 
 origImg = imread('data/Catvengers.png');
 distImg = imread('demosaicing_output.png');
-[PSNR, SNR] = psnr(origImg, distImg, 255);
+[PSNR, SNR] = psnr(distImg, origImg, 255);
 PSNR
+SNR
