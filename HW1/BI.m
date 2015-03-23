@@ -5,8 +5,11 @@ function [ result ] = BI( img )
     scale = 4;
     result = repmat(img, scale, scale);
     
-    for i = 1:(h * scale),
-        for j = 1:(w * scale),
+    h_large = h * scale;
+    w_large = w * scale;
+    
+    for i = 1:h_large,
+        for j = 1:w_large,
             double_x = double(i) / scale;
             double_y = double(j) / scale;
             x = double(floor(double_x));
@@ -22,7 +25,7 @@ function [ result ] = BI( img )
             if a == 0, a = 1; end
             if b == 0, b = 1; end
             
-            result(i, j) = (1 - alpha) * (1 - beta) * img(a, b) + alpha * (1 - beta) * img(a, b+1) + (1 - alpha) * beta * img(a+1, b) + alpha * beta * img(a+1, b+1);
+            result(i, j) = (1 - alpha) * (1 - beta) * img(a, b) + (1 - alpha) * beta * img(a, b+1) + (alpha) * (1 - beta) * img(a+1, b) + alpha * beta * img(a+1, b+1);
         end
     end
 
