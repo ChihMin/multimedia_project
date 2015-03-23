@@ -5,7 +5,7 @@ function [ results ] = NNI( img )
     
     [h, w] = size( img );
     scale = 4;
-    C = repmat(img, 2, 2);
+    C = repmat(img, scale, scale);
     
     for i = 1:(h * scale),
         for j = 1:(w * scale),
