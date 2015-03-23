@@ -11,11 +11,11 @@ function [ result ] = Thredsholding( img )
         end
     end
     
-    sum
+    
     sum = sum / ( w * h ) ;    
     for i = 1:h,
         for j = 1:w,
-            if img(i, j) > 128
+            if img(i, j) > sum
                 img(i, j) = 255;
             else
                 img(i, j) = 0;

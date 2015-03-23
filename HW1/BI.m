@@ -28,6 +28,5 @@ function [ result ] = BI( img )
             result(i, j) = (1 - alpha) * (1 - beta) * img(a, b) + (1 - alpha) * beta * img(a, b+1) + (alpha) * (1 - beta) * img(a+1, b) + alpha * beta * img(a+1, b+1);
         end
     end
-
 end
 
