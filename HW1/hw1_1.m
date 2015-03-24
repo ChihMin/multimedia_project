@@ -14,4 +14,3 @@ origImg = imread('data/Catvengers.png');
 distImg = imread('demosaicing_output.png');
 [PSNR, SNR] = psnr(distImg, origImg, 255);
 PSNR
-SNR
