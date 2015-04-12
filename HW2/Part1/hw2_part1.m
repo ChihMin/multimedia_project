@@ -14,6 +14,8 @@ promptStr = sprintf('%d points selected', clickedN);
 xlabel (promptStr, 'FontName', '·L³n¥¿¶ÂÅé', 'FontSize', 14);
 
 %% Calculate B£«£¾zier curve (Your efforts here)
+%  Part 1(A)
+
 outlineVertexList = ctrlPointList; %Enrich outlineVertexList
 [pt_counts, ~] = size(outlineVertexList);
 
@@ -47,16 +49,19 @@ end
 outlineVertexList = ansList;
 ctrlPointList = ansList;
 
-%% Draw and fill the polygon
+% Draw and fill the polygon
 drawAndFillPolygon( catImage, ctrlPointList, outlineVertexList, true, true, true ); %ctrlPointScattered, polygonPlotted, filled
 
-%{
+%% This is part1(b) 
+    % This part is NOT Comment, this is part1(b) code
+    % Part 1 (b)
+
     big_img = imresize(catImage, 4, 'nearest');
     imwrite(big_img, 'github_cat_4_scale.png', 'png');
     figure;
+
     % output 4 multiple scaling of image 
 
     ctrlPointList = ctrlPointList * 4;
     outlineVertexList = outlineVertexList * 4;
     drawAndFillPolygon( big_img, ctrlPointList, outlineVertexList, true, true, true ); %ctrlPointScattered, polygonPlotted, filled
-%}
