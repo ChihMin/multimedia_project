@@ -40,7 +40,7 @@ writeColorObj( 'RGBCube.obj', verts, vertColors, faces );
 %%
 % Problem 2b
 
-numOfVert = 100; %12 for Visualization, 60 in practice
+numOfVert = 200; %12 for Visualization, 60 in practice
 vertsPolarAngle = linspace(0, 2 * pi, numOfVert+1);
 vertsColorAngle = linspace(0 ,1, numOfVert+1);
 vertsX = cos(vertsPolarAngle);
@@ -79,7 +79,16 @@ for i = h+2:h1,
     faces = [faces; i i+1 h+1]; 
 end
 
+
+for i = 2:h,
+    if i == h,
+        faces = [faces; i+h mod(i+1,h)+1 i];
+        faces = [faces; mod(i+1,h)+1+h mod(i+1,h)+1 i+h]; 
+    end
+    faces = [faces; i+h i+1 i];
+    faces = [faces; i+1+h i+1 i+h];
+end
 rgb_colors = hsv2rgb(colors);
 
-writeColorObj( 'RGBCilindar.obj', verts, rgb_colors, faces );
+writeColorObj( 'RGBCylindar.obj', verts, rgb_colors, faces );
 
