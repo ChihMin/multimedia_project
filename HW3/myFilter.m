@@ -17,14 +17,13 @@ ans = [];
 fltr = [];
 if strcmp(type,'low-pass')==1, 
     f_c = para(1);
-    time = [1:length(y)] / Fs;
-    f_c = 0.01;
+    f_c = f_c / Fs;
     W_c = 2 * pi * f_c;
 
     N = 501;
     middle = floor(N/2);
     
-    for n = (-middle):1:middle,
+    for n = (-middle):middle,
         if n == 0
             fltr(middle+1) = 1;
         else
@@ -32,36 +31,8 @@ if strcmp(type,'low-pass')==1,
         end
     end
     
-   
     fltr(middle+1) = 2 * f_c;
-    
-    subplot(1, 3, 1);
-    plot([1:length(fltr)], fltr); 
-    
-   %fvtool(fltr);
-   %{
-    for n = 1:N,
-        fltr(n) = fltr(n) * (0.5 + 0.5*cos((2*pi*double(n-1))/(N)));    
-    end
-   %} 
-    
-    subplot(1, 3, 2);
-    plot([1:length(fltr)], fltr); 
-   
-    % fltr = fir1(N, f_c);
-    
-    subplot(1, 3, 3);
-    plot([1:length(fltr)], fltr);
-    
-    ans = conv(y, fltr);
-    
-    time = [1:length(fltr)] / Fs;
-    a = max(ans);
-    b = abs(min(ans));
-    
-    average = sum(ans) / length(ans);
-    scale = 1;
-    ans = ans * scale;
+    ans = my_conv(y, fltr);
 end
 
 out = ans;

@@ -5,15 +5,15 @@ clear all;close all;clc;
 
 % Read in input audio file (wavread or audioread)
 [y, Fs, nbits] = wavread('hw3_mix.wav');
-[Ans, fltr] = myFilter(y, Fs, nbits, 'Hanning', 'low-pass', [0.1 0.1]);
+[Ans, fltr] = myFilter(y, Fs, nbits, 'Hanning', 'low-pass', 441);
 audiowrite('low_pass.wav', Ans, Fs);
 sound(Ans, Fs);
-fvtool(fltr);
+ fvtool(fltr);
 % Filtering
 
 % Frequency analysis - you can use the following code to plot spectrum
 % y1: signal, Fs1: sampling rate
-y1 = fltr;
+y1 = y;
 Fs1 = Fs;
 L = 2^nextpow2(max(size(y1)));
 y1_FFT = fft(y1,L);
