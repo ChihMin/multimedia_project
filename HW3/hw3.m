@@ -48,9 +48,6 @@ subplot(2, 2, 1);
 plot_sound(y, Fs);
 title('origin sound');
 
-
-
-
 % first-order feedback loop for noise shaping
 nbits = 8;
 F_in =  floor(y*(2^nbits/2)+(2^nbits/2));
@@ -86,7 +83,7 @@ end
 F_out =(F_out - (2^nbits/2))/(2^nbits/2);
 subplot(2, 2, 3);
 plot_sound(F_out, Fs);
-audiowrite('AnJing_4bit_feedback.wav', F_out, Fs);
+% audiowrite('AnJing_4bit_feedback.wav', F_out, Fs);
 
 
 % low_pass filter
