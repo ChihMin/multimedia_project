@@ -5,22 +5,38 @@ clear all;close all;clc;
 
 % Read in input audio file (wavread or audioread)
 [y, Fs, nbits] = wavread('hw3_mix.wav');
-[low_pass, fltr] = myFilter(y, Fs, nbits, 'Hanning', 'low-pass', 441);
-[high_pass, fltr] = myFilter(y, Fs, nbits, 'Hanning', 'high-pass', 800);
-[band_pass, fltr] = myFilter(y, Fs, nbits, 'Hanning', 'band-pass', [441, 800]);
+[low_pass, fltr_low] = myFilter(y, Fs, nbits, 'Rectangular', 'low-pass', 441);
+[high_pass, fltr_high] = myFilter(y, Fs, nbits, 'Rectangular', 'high-pass', 800);
+[band_pass, fltr_band] = myFilter(y, Fs, nbits, 'Rectangular', 'band-pass', [441, 800]);
 
 audiowrite('low_pass.wav', low_pass, Fs);
 audiowrite('high_pass.wav', high_pass, Fs);
 audiowrite('band_pass.wav', band_pass, Fs);
-sound(band_pass, Fs);
-fvtool(fltr);
+% sound(band_pass, Fs);
 
-% Filtering
+fvtool(fltr_low);
+fvtool(fltr_high);
+fvtool(fltr_band);
 
-% Frequency analysis - you can use the following code to plot spectrum
-% y1: signal, Fs1: sampling rate
+subplot(1, 3, 1);
+plot_sound(low_pass, Fs);
 
-% Save the filtered audio (wavwrite or audiowrite)
+subplot(1, 3, 2);
+plot_sound(high_pass, Fs);
+
+subplot(1, 3, 3);
+plot_sound(band_pass, Fs);
+
+
+figure;
+subplot(1, 3, 1);
+plot([1:length(fltr_low)], fltr_low);
+
+subplot(1, 3, 2);
+plot([1:length(fltr_high)], fltr_high);
+
+subplot(1, 3, 3);
+plot([1:length(fltr_band)], fltr_band);
 
 %% Q2
 
@@ -45,7 +61,12 @@ c = 0.8;
 [h, ~] = size(y);
 s = 1;
 
-noise = F_in/s + -32 + 64 * rand(1);
+for j = 1:2,    
+    for i = 1:length(F_in),
+        noise(i, j) = F_in(i, j) + -64 + 128 * rand(1);
+    end
+end
+
 subplot(2, 2, 2);
 plot_sound(noise, Fs);
 
