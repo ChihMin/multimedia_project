@@ -45,7 +45,7 @@ c = 0.8;
 [h, ~] = size(y);
 s = 1;
 
-noise = F_in/s + -1 + 2 * rand(1);
+noise = F_in/s + -32 + 64 * rand(1);
 subplot(2, 2, 2);
 plot_sound(noise, Fs);
 
