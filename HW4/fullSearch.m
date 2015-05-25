@@ -2,6 +2,8 @@ function [ macroblocks ] = fullSearch( img1, img2, range, N)
     [h, w] = size(img1);
     macro_i = 1;
     macro_j = 1;
+
+    
     macroblocks = zeros(floor(h/N), floor(w/N));
     for i = 1:N:h,
         macro_j = 1;
