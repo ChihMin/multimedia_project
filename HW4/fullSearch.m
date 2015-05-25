@@ -10,7 +10,7 @@ function [ macroblocks ] = fullSearch( img1, img2, range, N)
             SAD = uint64(1e9);
             vec_i = 0;
             vec_j = 0;
-            [i, j]
+            %[i, j]
             for a = max(1,(i-range)):1:(i+range),
                 for b = max(1,(j-range)):1:(j+range),
                     if( (a + N - 1) > h || (b + N - 1) > w) ,
