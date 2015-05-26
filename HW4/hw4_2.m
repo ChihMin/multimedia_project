@@ -7,9 +7,10 @@ D = 0;
 for k = 1:10,
     for aa = 1:1:2,
         for bb = 1:1:2,
-            disp(['now is ', int2str(aa), ' ',int2str(bb), ' ', int2str(k)]);
-            N = 8 * aa;
-            D = 8 * bb;
+            D = 8 * aa;
+            N = 8 * bb;
+            disp(['now is ', int2str(D), ' ',int2str(N), ' ', int2str(k)]);
+
             fileName = strcat('caltrain0', fileNumber(k,:));
             img1 = imread('input/caltrain007.bmp');
             img2 = imread(strcat('input/', fileName, '.bmp'));
@@ -17,7 +18,7 @@ for k = 1:10,
             img1 = rgb2gray(img1);
             img2 = rgb2gray(img2);
 
-            [motion_vec] = fullSearch(img1, img2, D, N);
+            [motion_vec] = fullSearch(double(img1), double(img2), D, N);
 
             img3 = img1;
             [h, w, ~] = size(motion_vec);
@@ -49,8 +50,8 @@ for k = 1:10,
     for aa = 1:1:2,
         for bb = 1:1:2,
             disp(['now is ', int2str(aa), ' ',int2str(bb), ' ', int2str(k)]);
-            N = 8 * aa;
-            D = 8 * bb;
+            D = 8 * aa;
+            N = 8 * bb;
             fileName = strcat('caltrain0', fileNumber(k,:));
             img1 = imread('input/caltrain007.bmp');
             img2 = imread(strcat('input/',fileName, '.bmp'));
@@ -58,7 +59,7 @@ for k = 1:10,
             img1 = rgb2gray(img1);
             img2 = rgb2gray(img2);
 
-            [motion_vec] = logarithmic(img1, img2, D, N);
+            [motion_vec] = logarithmic(double(img1), double(img2), D, N);
 
             img3 = img1;
             [h, w, ~] = size(motion_vec);

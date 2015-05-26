@@ -14,7 +14,7 @@ bb = range;
         img1 = rgb2gray(img1);
         img2 = rgb2gray(img2);
 
-        [motion_vec] = fullSearch(img1, img2, D, N);
+        [motion_vec] = fullSearch(double(img1), double(img2), D, N);
 
         img3 = img1;
         [h, w, ~] = size(motion_vec);

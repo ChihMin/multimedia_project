@@ -1,15 +1,13 @@
 function [ macroblocks ] = fullSearch( img1, img2, range, N)
     [h, w] = size(img1);
     macro_i = 1;
-    macro_j = 1;
 
-    
     macroblocks = zeros(floor(h/N), floor(w/N));
     for i = 1:N:h,
         macro_j = 1;
         for j = 1:N:w,
             % Find the begining point
-            SAD = uint64(1e9);
+            SAD = 1e9;
             vec_i = 0;
             vec_j = 0;
             %[i, j]
@@ -24,7 +22,7 @@ function [ macroblocks ] = fullSearch( img1, img2, range, N)
                         N...
                     );
                     
-                    if( uint64(cur_SAD) < uint64(SAD)),
+                    if( cur_SAD < SAD ),
                         %[a, b, cur_SAD, SAD]
                         SAD = cur_SAD;
                         vec_i = a - i;

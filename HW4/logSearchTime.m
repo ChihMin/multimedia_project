@@ -14,7 +14,7 @@ bb = range;
         img1 = rgb2gray(img1);
         img2 = rgb2gray(img2);
 
-        [motion_vec] = logarithmic(img1, img2, D, N);
+        [motion_vec] = logarithmic(double(img1), double(img2), D, N);
 
         img3 = img1;
         [h, w, ~] = size(motion_vec);
