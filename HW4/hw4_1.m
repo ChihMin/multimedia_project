@@ -32,7 +32,6 @@ for aa = 1:1:2,
         string_D = int2str(D);
         output_string = strcat('output/', string_008,'_',string_N,'_',string_D,'.bmp');
         imwrite(img4, output_string);
-        psnr(img2, img3)
     end
 end
 
@@ -46,7 +45,7 @@ for aa = 1:1:2,
         disp(['now is ', int2str(aa), ' ',int2str(bb)]);
         N = 8 * aa;
         D = 8 * bb;
-        fileName = 'caltrain008';
+        fileName = 'caltrain017';
         img1 = imread('input/caltrain007.bmp');
         img2 = imread(strcat('input/',fileName, '.bmp'));
         
@@ -55,7 +54,7 @@ for aa = 1:1:2,
 
         [motion_vec] = logarithmic(double(img1), double(img2), D, N);
 
-        img3 = zeros(400, 512);
+        img3 = img1;
         [h, w, ~] = size(motion_vec);
         for i = 1:1:h,
             for j = 1:1:w,    
@@ -73,12 +72,5 @@ for aa = 1:1:2,
         string_D = int2str(D);
         output_string = strcat('output/', 'log_', string_008,'_',string_N,'_',string_D,'.bmp');
         imwrite(img4, output_string);
-        psnr(img2, img3)
-        
-        subplot(1,2,1);
-        imshow(img2);
-        
-        subplot(1,2,2);
-        imshow(img3);
     end
 end
