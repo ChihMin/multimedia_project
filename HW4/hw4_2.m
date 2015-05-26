@@ -91,8 +91,8 @@ for u = 1:2,
         hold on
         y1 = PSNR_full(:, u, v);
         y2 = PSNR_log(:, u, v);
-        plot(x1, y1, 'b--o','Color','r');
-        plot(x2, y2, 'b--o','Color','b');
+        plot(x1, y1, 'b--o','Color','b');
+        plot(x2, y2, 'b--o','Color','r');
         
         uu  = u * 8; vv = v * 8; 
         str = strcat('d = ', int2str(uu), ', N = ',int2str(vv)); 
