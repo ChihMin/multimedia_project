@@ -29,11 +29,8 @@ function [ macroblocks ] = fullSearch( img1, img2, range, N)
                         SAD = cur_SAD;
                         vec_i = a - i;
                         vec_j = b - j;
-                        
-                    end
-                    
-                end
-                
+                    end                    
+                end                
             end
             %[j, SAD]
             macroblocks(macro_i, macro_j, 1) = vec_i;
@@ -42,6 +39,5 @@ function [ macroblocks ] = fullSearch( img1, img2, range, N)
         end
         macro_i = macro_i + 1;
     end
-   [macro_i, macro_j]
 end
 
