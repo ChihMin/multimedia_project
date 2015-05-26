@@ -17,8 +17,8 @@ function [ macroblocks ] = fullSearch( img1, img2, range, N)
                         continue; 
                     end
                     cur_SAD = calculateSAD(...
-                        img1( a:(a+N-1), b:(b+N-1)),...
-                        img2( i:(i+N-1), j:(j+N-1)),...
+                        img2( a:(a+N-1), b:(b+N-1)),...
+                        img1( i:(i+N-1), j:(j+N-1)),...
                         N...
                     );
                     
@@ -31,8 +31,8 @@ function [ macroblocks ] = fullSearch( img1, img2, range, N)
                 end                
             end
             %[j, SAD]
-            macroblocks(macro_i, macro_j, 1) = vec_i;
-            macroblocks(macro_i, macro_j, 2) = vec_j;
+            macroblocks(macro_i, macro_j, 1) = int32(vec_i);
+            macroblocks(macro_i, macro_j, 2) = int32(vec_j);
             macro_j = macro_j + 1;
         end
         macro_i = macro_i + 1;
