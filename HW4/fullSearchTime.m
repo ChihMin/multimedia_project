@@ -1,8 +1,8 @@
-function fullSearchTime(range)
+function fullSearchTime(n_size, range)
 
 N = 0;
 D = 0;
-aa = 1;
+aa = n_size;
 bb = range;
         % disp(['now is ', int2str(aa), ' ',int2str(bb)]);
         N = 8 * aa;

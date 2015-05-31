@@ -3,6 +3,7 @@ function [ macroblocks ] = fullSearch( img1, img2, range, N)
     macro_i = 1;
 
     macroblocks = zeros(floor(h/N), floor(w/N));
+    full_search_total_SAD = 0;
     for i = 1:N:h,
         macro_j = 1;
         for j = 1:N:w,
@@ -31,11 +32,13 @@ function [ macroblocks ] = fullSearch( img1, img2, range, N)
                 end                
             end
             %[j, SAD]
+            full_search_total_SAD = full_search_total_SAD + SAD;
             macroblocks(macro_i, macro_j, 1) = int32(vec_i);
             macroblocks(macro_i, macro_j, 2) = int32(vec_j);
             macro_j = macro_j + 1;
         end
         macro_i = macro_i + 1;
     end
+    full_search_total_SAD
 end
 

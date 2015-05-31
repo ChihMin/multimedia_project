@@ -2,6 +2,7 @@ function [ macroblocks ] = logarithmic( img1, img2, range, N )
     
     [h, w] = size(img1);
     macroblocks = zeros(floor(h/N), floor(w/N));
+    log_search_total_SAD = 0;
     for i = 1:N:h,
         for j = 1:N:w,
             % [i, j]
@@ -88,11 +89,13 @@ function [ macroblocks ] = logarithmic( img1, img2, range, N )
                     n = floor(n/2);
                 end
             end
+            log_search_total_SAD = log_search_total_SAD + SAD;
             macro_i = floor((i - 1) / N) + 1;
             macro_j = floor((j - 1) / N) + 1;
             macroblocks(macro_i, macro_j, 1) = q;
             macroblocks(macro_i, macro_j, 2) = l;
         end
     end
+    log_search_total_SAD
 end
 
